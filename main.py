@@ -6,13 +6,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
 
-# CORS VERIFY
-origins = [
-    "http://localhost:3000",
-    "http://localhost:8080",
-    "http://127.0.0.1:8000",
-    "http://127.0.0.1:8000/api/users",
-]
+origins = ["*"]
+
 app.add_middleware(
     CORSMiddleware,
     allow_origins=origins,
@@ -33,7 +28,7 @@ async def index():
     }
 
 # insert data
-@app.post('/api/users')
+@app.post('/api/users/new')
 async def store(user:User):
     data = connection.execute(users.insert().values(
     user_name=user.user_name,
