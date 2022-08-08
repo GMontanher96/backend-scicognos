@@ -9,6 +9,8 @@ app = FastAPI()
 # CORS VERIFY
 origins = [
     "http://localhost:3000",
+    "http://localhost",
+    "https://localhost",
     "http://localhost:8080",
     "http://127.0.0.1:8000",
     "http://127.0.0.1:8000/api/new",
@@ -78,7 +80,7 @@ async def edit_data(id:int):
 @app.put('/api/users/{id}')
 async def update(id: int, user: User):
     data = connection.execute(users.update().values(
-     user_name=user.user_name,
+    user_name=user.user_name,
     user_email=user.user_email,
     user_cpf=user.user_cpf,
     user_password=user.user_password,
